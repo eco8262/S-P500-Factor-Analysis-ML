@@ -1,0 +1,42 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+
+# -----------------------------
+# Load Dataset
+# -----------------------------
+# IMPORTANT: Replace 'yourfile.csv' with your actual file name
+df = pd.read_csv("yourfile.csv")
+
+# -----------------------------
+# Basic Cleaning
+# -----------------------------
+print("Dataset shape:", df.shape)
+print("Columns:", df.columns.tolist())
+print("Missing values:\n", df.isnull().sum())
+
+# -----------------------------
+# Correlation Heatmap
+# -----------------------------
+numeric_df = df.select_dtypes(include=[np.number])
+
+plt.figure(figsize=(12, 8))
+sns.heatmap(numeric_df.corr(), annot=True, fmt=".2f", linewidths=.5)
+plt.title("Correlation Heatmap")
+plt.tight_layout()
+
+# create results folder if not exist
+if not os.path.exists("results"):
+    os.makedirs("results")
+
+plt.savefig("results/heatmap.png")
+print("Heatmap saved in results/heatmap.png")
+
+# -----------------------------
+# Example: Describe statistics
+# -----------------------------
+stats = numeric_df.describe()
+stats.to_csv("results/statistics.csv")
+print("Summary statistics saved in results/statistics.csv")
