@@ -7,8 +7,7 @@ import os
 # -----------------------------
 # Load Dataset
 # -----------------------------
-# IMPORTANT: Replace 'yourfile.csv' with your actual file name
-df = pd.read_csv("yourfile.csv")
+df = pd.read_csv(".......csv")
 
 # -----------------------------
 # Basic Cleaning
@@ -40,3 +39,4 @@ print("Heatmap saved in results/heatmap.png")
 stats = numeric_df.describe()
 stats.to_csv("results/statistics.csv")
 print("Summary statistics saved in results/statistics.csv")
+
